@@ -1,0 +1,340 @@
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'widescreen': 1200px
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+@import 'vendors/include-media';
+@import 'vendors/normalize';
+@import 'vendors/icons';
+
+@import 'base/variables';
+@import 'base/functions';
+@import 'base/mixins';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/forms';
+
+#wrapper {
+  width: 100%;
+}
+
+#header{
+  width:960px;
+  margin:0 auto 23px;
+  background:#000;
+  @extend %clearfix;
+  padding:12px 26px 0 0;
+  img{
+    display:block;
+  }
+  .logo{
+    float:left;
+    margin:-12px 15px 0 0;
+    a{
+      background: black none repeat scroll 0 0;
+      display: block;
+      padding: 5px 34px 12px 41px;
+    }
+  }
+  strong{
+    float:right;
+    padding: 0 0 8px;
+  }
+}
+.container{
+  width:790px;
+  margin:0 auto;
+}
+#nav{
+  float:right;
+  width:700px;
+  text-align:right;
+  ul{
+    @extend %listreset;
+    @include font(14px, 17px);
+    li{
+       @include vertical(inline-block, top);
+       margin: 0 0 0 23px;
+       word-spacing:3px;
+       &.active{
+         a{
+           border-bottom:6px solid #759dd2;
+         }
+       }
+     }
+     a{
+       color:$white;
+       text-decoration:none;
+       display:block;
+       padding:0 0 4px;
+       &:hover{
+         border-bottom:6px solid #759dd2;
+       }
+    }
+  }
+}
+.carousel{
+  @extend %clearfix;
+  position:relative;
+  width:100%;
+  margin:0 0 28px;
+  
+  .mask{
+    width:632px;
+    float:left;
+    .slideset{
+      background:$gray;
+      overflow:hidden;
+      border-right: 7px solid $white;
+      padding:23px 0 0 13px;
+      img{
+        display:block;
+        margin:-23px 0 0;
+        float:right;
+      }
+      .header{
+        float:left;
+        width:218px;
+        time{
+          color:$white;
+          @include font(24px, 30px);
+          font-weight:bold;
+          letter-spacing:1px;
+          word-spacing:-2px;
+          display:block;
+          margin:0 0 27px;
+        }
+        h1{
+          color:$white;
+          @include font(24px, 29px);
+          font-weight:bold;
+          letter-spacing:1px;
+          word-spacing:-2px;
+          border-bottom:1px solid $white;
+          padding:0 0 31px;
+          margin:0 0 30px;
+        }
+        i{
+          color:$white;
+          @include font(18px, 16px);
+          display:block;
+          text-indent: 5px;
+          margin:0 0 24px;
+        }
+        a{
+          color:$white;
+          @include font(16px, 19px);
+          text-decoration:none;
+          padding: 0 0 0 5px;
+          display:block;
+        }
+      }
+    }
+  }
+  .btn-down,
+  .btn-up{
+      position:absolute;
+      z-index:9;
+      transform:rotate(90deg);
+      color:$white;
+      background:$btn-gray;
+      text-decoration:none;
+      padding: 23px 6px 23px 7px;
+      top: -31px;
+      right: 66px;
+      display:block;
+  }
+  .btn-down{
+    bottom:-30px;
+    top:auto;
+    transform:rotate(-90deg);
+  }
+  .pagination{
+    width:158px;
+    float:right;
+    ul{
+      @extend %listreset;
+      img{
+        display:block;
+      }
+      li{
+        position:relative;
+        header{
+          bottom: 3px;
+          left: 46px;
+          position: absolute;
+          z-index:9;
+          h2{
+            color: white;
+            @include font(14px, 18px);
+          }
+        }
+      &.active{
+        a{
+         @include positioning2(after, 49px, auto, auto,0);
+         &:after{
+            @include triangle(15px, $white, right);
+            z-index:99;
+          }
+        @include bg(before, 0, 0, 0, 0, $green);
+        &:before{
+             opacity:0.57;
+             z-index:9;
+          }
+        }
+      }
+       a{
+         display:block;
+         &:hover{
+           @include positioning2(after, 49px, auto, auto,0);
+           &:after{
+            @include triangle(15px, $white, right);
+            z-index:99;
+           }
+           @include bg(before, 0, 0, 0, 0, $green);
+           &:before{
+             opacity:0.57;
+             z-index:9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#content{
+  @include font(15px, 18px);
+  margin: 0 0 19px;
+  .text{
+    padding:0 2px;
+    margin: 0 0 14px;
+    p{
+      margin:0 0 4px;
+    }
+  }
+  .info{
+    overflow:hidden;
+    margin:0 -36px 5px 0;
+    h2{
+      @include font(24px, 28px);
+      color:$bg-blue;
+      text-indent:-1px;
+      margin:0 0 13px;
+    }
+    .col{
+      @include font(15px, 18px);
+      color:$jet-black;
+      width:369px;
+      float:left;
+      margin: 0 44px 0 0;
+      h3{
+        border-bottom: 9px solid $blue;
+        @include font(15px, 18px);
+        padding: 0 0 4px;
+        margin:0 0 4px;
+      }
+      p{
+        margin:0 0 19px;
+      }
+      address{
+         font-style: normal;
+         margin: 0 0 19px;
+      }
+    }
+  }
+  .join{
+    overflow:hidden;
+    ul{
+      @extend %listreset;
+      @include font(22px, 25px);
+      font-weight:bold;
+      text-align:center;
+      li{
+        @include vertical(inline-block, top);
+        width:200px;
+        margin:0 19px;
+        
+      }
+      a{
+        display:block;
+        text-decoration:none;
+        color:$bg-blue;
+        &:hover{
+          opacity:0.8;
+        }
+      }
+      .icon-mail,
+      .icon-daily-calendar,
+      .icon-pin71{
+        background: $bg-blue;
+        border-radius: 100%;
+        font-size: 90px;
+        @include size(140px, 140px);
+        margin: 21px 0 0 28px;
+        padding: 27px 0 0;
+        color:$white;
+      }
+      .icon-mail{
+        padding:6px 0 0;
+        font-size:109px;
+        margin: 21px 0 0 32px;
+      }
+      .icon-daily-calendar{
+        font-size: 75px;
+      }
+    }
+  }
+}
+#footer{
+  width:960px;
+  margin:0 auto;
+  background:$gray;
+  padding: 23px 85px;
+  .nav{
+    overflow:hidden;
+    margin:0 0 15px;
+    ul{
+      @extend %listreset;
+      @include font(14px, 18px);
+      li{
+        float:left;
+       margin:0 20px 0 0;
+      }
+      a{
+        color:$white;
+        text-decoration:none;
+        &:hover{
+          opacity:0.6;
+        }
+      }
+    }
+  }
+  .logo{
+    @include vertical(inline-block, top);
+    margin:0 6px 0 0;
+  }
+  address{
+    display:inline-block;
+    @include font(12px, 20px);
+    color:$white;
+    font-style:normal;
+    margin:-3px 0 0;
+  }
+}
